@@ -1,0 +1,32 @@
+
+# phpstorm project files
+.idea
+
+# netbeans project files
+nbproject
+
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
+
+# windows thumbnail cache
+Thumbs.db
+
+# Mac DS_Store Files
+.DS_Store
+
+/vendor/
+/composer.phar
+/vagrant/puppet/modules/*
+!/vagrant/puppet/modules/site
+!/vagrant/puppet/modules/accessories
+!/vagrant/puppet/modules/nginx
+!/vagrant/puppet/modules/php
+!/vagrant/puppet/modules/dbserver
+/vagrant/puppet/data/common.yaml
+
+
+# vagrant files
+.vagrant
+Vagrantfile

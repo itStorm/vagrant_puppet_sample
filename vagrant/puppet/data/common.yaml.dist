@@ -1,0 +1,10 @@
+site::webserver::path: /home/ubuntu/www
+site::webserver::wwwname: test.dev
+site::webserver::wwwroot: web
+site::webserver::wwwindex: index.php
+
+site::database::port: 3306
+site::database::rootpassword: qwerty123
+site::database::dbname: testdb
+site::database::dbuser: test
+site::database::dbuserpassword: 12344321

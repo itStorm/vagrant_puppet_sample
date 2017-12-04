@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/xenial64"
+    config.vm.hostname = "www.dev"
+    config.vm.network "private_network", ip: "192.168.88.11"
+
+    config.vm.synced_folder "./", "/home/ubuntu/www", :mount_options => ['dmode=777', 'fmode=777']
+
+    config.vm.provision "shell", path: "./vagrant/shell/init.sh"
+
+    # RUN PUPPET MANUAL => sudo puppet apply --hiera_config=hiera.yaml --modulepath=./modules manifests/site.pp
+    config.vm.provision "puppet", run: "always" do |puppet|
+        puppet.manifests_path = "vagrant/puppet/manifests"
+        puppet.manifest_file = "site.pp"
+        puppet.module_path = "vagrant/puppet/modules"
+        puppet.working_directory = "/home/ubuntu/www/vagrant/puppet"
+        puppet.hiera_config_path = "vagrant/puppet/hiera.yaml"
+    end
+
+    config.vm.provision "shell", path: "./vagrant/shell/finish.sh"
+
+end
