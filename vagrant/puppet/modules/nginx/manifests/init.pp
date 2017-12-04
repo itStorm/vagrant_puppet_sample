@@ -1,11 +1,15 @@
 class nginx ($path, $wwwname, $wwwroot, $wwwindex){
-  class{ 'nginx::install': }->
+  contain 'nginx::install'
+
   class{ 'nginx::config':
     path      => $path,
     wwwname   => $wwwname,
     wwwroot   => $wwwroot,
     wwwindex  => $wwwindex,
-  }~>
+    require   => Class['nginx::install'],
+    notify    => Service['nginx'],
+  }
+
   service { 'nginx':
     ensure     => 'running',
     enable     => true,

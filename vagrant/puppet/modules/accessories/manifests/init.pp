@@ -7,9 +7,7 @@ class accessories{
     content => 'configure_locales_flag',
     ensure  => present,
     path    => "${site::webserver::path}/state/configure_locales",
-  }
-
-  package{ [
+  }->package{ [
     'mc',
     'git',
     'curl',
